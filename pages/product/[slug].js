@@ -10,6 +10,7 @@ export default function ProductScreen() {
   const { state, dispatch } = useContext(Store);
   const { query } = useRouter();
   const { slug } = query;
+  const router = useRouter();
   const product = data.products.find((x) => x.slug === slug);
   if (!product) {
     return <div>Product Not Found</div>;
@@ -25,6 +26,7 @@ export default function ProductScreen() {
     }
 
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    router.push('/cart');
   };
 
   return (
